@@ -1,0 +1,1 @@
+Run this script in Windows PowerShell ISE for some useful snippets.
