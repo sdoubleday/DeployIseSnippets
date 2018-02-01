@@ -4,22 +4,21 @@
 #,    ConfirmImpact           ="Medium"
 #,    DefaultParameterSetName ="Default"
 #,    HelpURI                 =$null
-#,    SupportsPaging          =$false <#Enables -First n, -Skip n, -IncludeTotalCount#>
-#,    SupportsShouldProcess   =$false <#Enables -Confirm and -Whatif, for which you will want: If ($PSCmdlet.ShouldProcess("Message")) { BlockofCode } #>
-#,    PositionalBinding       =$false <#True auto-enables positional. If false, [Parameter(Position=n)] overrides for those params.#>
+#,    SupportsPaging          =$true <#Enables -First n, -Skip n, -IncludeTotalCount#>
+#,    SupportsShouldProcess   =$true <#Enables -Confirm and -Whatif, for which you will want: If ($PSCmdlet.ShouldProcess("Message")) { BlockofCode } #>
+#,    PositionalBinding       =$true <#True auto-enables positional. If false, [Parameter(Position=n)] overrides for those params.#>
 )]
 '
 
 New-IseSnippet -Title "ParameterDecorator" -Author "sdoubleday" -Description "All ParameterDecorator Attributes" -Force -Text '
-[Parameter(
-#,    Mandatory                         = $false
-#,    Position                          = 0
-#,    ParameterSetName                  = "Default" <#If you use this, you need [Parameter()] blocks for each version, or omit to allow in all.#>
-#,    ValueFromPipeline                 = $false    <#Takes a pipeline *object*, not just parameters from it#>
-#,    ValueFromPipelineByPropertyName   = $false    <#Map parameters from inbound objects by property name#>
-#,    ValueFromRemainingArgument        = $false    <#Advanced.#>
-#,    HelpMessage                       = "Helpful message to display in get-help get-thisfunction -detailed"
-)]'
+[Parameter(Mandatory= $true,ValueFromPipelineByPropertyName= $true)]
+<#Map parameters from inbound objects by property name#>
+#,ParameterSetName= "Default" <#If you use this, you need [Parameter()] blocks for each version, or omit to allow in all.#>
+#,Position= 0
+#,ValueFromPipeline= $true    <#Takes a pipeline *object*, not just parameters from it#>
+#,ValueFromRemainingArgument= $true    <#Advanced.#>
+#,HelpMessage= "Helpful message to display in get-help get-thisfunction -detailed"
+'
 
 New-IseSnippet -Title "ParameterValidation" -Author "sdoubleday" -Description "All ParameterValidation Attributes" -Force -Text '
 #Parameter Validation Attributes
