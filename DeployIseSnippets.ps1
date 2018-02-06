@@ -67,7 +67,7 @@ New-IseSnippet -Title "ParameterValidation_File" -Author "sdoubleday" -Descripti
             } 
         })][String]'
 
-New-IseSnippet -Title "ParameterVerboseEchoValues" -Author "sdoubleday" -Description "Verbose list the values of all parameters." -Text '
+New-IseSnippet -Title "ParameterVerboseEchoValues" -Author "sdoubleday" -Description "Verbose list the values of all parameters." -Force -Text '
 #region Echo parameters (https://stackoverflow.com/questions/21559724/getting-all-named-parameters-from-powershell-including-empty-and-set-ones)
 Write-Verbose "Echoing parameters:"
 $ParameterList = (Get-Command -Name $MyInvocation.InvocationName).Parameters;
@@ -78,12 +78,19 @@ foreach ($key in $ParameterList.keys)
     {
         Write-Verbose "$($var.name): $($var.value)"
     }
+    <#Catches Dynamic Parameters with default values that were not explicitly set in the calling script.#>
+    If(-not $var){
+        If($PSBoundParameters[$key]) {
+            "$($key): $($PSBoundParameters[$key])" | Write-Verbose
+        }    
+    }
+
 }
 Write-Verbose "Parameters done."
 #endregion Echo parameters'
 
 
-New-IseSnippet -Title "CleanupDirectory" -Author "sdoubleday" -Description "Removes trailing (and optionally leading) (back)slahes and standardizes (back)slashes." -Text @'
+New-IseSnippet -Title "CleanupDirectory" -Author "sdoubleday" -Description "Removes trailing (and optionally leading) (back)slahes and standardizes (back)slashes." -Force -Text @'
 ###############BE SURE TO CHANGE DIRECTORY VARIABLE!################
 #region Cleanup Virtual Directory - should use '/' instead of '\', leave off the final '/', should not start with a '/'
 <#Clean up directory by removing trailing slash so I know I will not have double slash problems.#>
