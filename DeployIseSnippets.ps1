@@ -76,12 +76,12 @@ foreach ($key in $ParameterList.keys)
     $var = Get-Variable -Name $key -ErrorAction SilentlyContinue;
     if($var)
     {
-        Write-Verbose "$($var.name): $($var.value)"
+        Write-Verbose "    $($var.name): $($var.value)"
     }
     <#Catches Dynamic Parameters with default values that were not explicitly set in the calling script.#>
     If(-not $var){
         If($PSBoundParameters[$key]) {
-            "$($key): $($PSBoundParameters[$key])" | Write-Verbose
+            "    `$PSBoundParameters[$($key)]: $($PSBoundParameters[$key])" | Write-Verbose
         }    
     }
 
