@@ -90,7 +90,7 @@ Write-Verbose "Parameters done."
 #endregion Echo parameters'
 
 
-New-IseSnippet -Title "CleanupDirectory" -Author "sdoubleday" -Description "Removes trailing (and optionally leading) (back)slahes and standardizes (back)slashes." -Force -Text @'
+New-IseSnippet -Title "CleanupDirectory" -Author "sdoubleday" -Description "Removes trailing (and optionally leading) (back)slashes and standardizes (back)slashes." -Force -Text @'
 ###############BE SURE TO CHANGE DIRECTORY VARIABLE!################
 #region Cleanup Virtual Directory - should use '/' instead of '\', leave off the final '/', should not start with a '/'
 <#Clean up directory by removing trailing slash so I know I will not have double slash problems.#>
@@ -107,3 +107,6 @@ $Directory = $Directory.Replace("/","\")
 #endregion Cleanup Virtual Directory - should use '/' instead of '\', leave off the final '/', should not start with a '/'
 '@
 
+New-IseSnippet -Title "endCommentForBlock" -Author "sdoubleday" -Description "Comment for the end of a script block" -Force -Text '<# END  #>' -CaretOffset 7
+
+New-IseSnippet -Title "pscustomobject" -Author "sdoubleday" -Description "Hashtable to pscustomobject" -Force -Text '[PSCustomObject]@{=""}' -CaretOffset 18
