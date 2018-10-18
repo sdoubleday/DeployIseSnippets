@@ -110,3 +110,10 @@ $Directory = $Directory.Replace("/","\")
 New-IseSnippet -Title "endCommentForBlock" -Author "sdoubleday" -Description "Comment for the end of a script block" -Force -Text '<# END  #>' -CaretOffset 7
 
 New-IseSnippet -Title "pscustomobject" -Author "sdoubleday" -Description "Hashtable to pscustomobject" -Force -Text '[PSCustomObject]@{=""}' -CaretOffset 18
+
+New-IseSnippet -Title "BeginProcessEnd" -Author "sdoubleday" -Description "Begin Process and End blocks with end tags." -Force -Text @'
+BEGIN   {}<# END BEGIN    #>
+PROCESS {}<# END PROCESS  #>
+END     {}<# END END      #>
+'@
+
