@@ -69,7 +69,7 @@ New-IseSnippet -Title "ParameterValidation_File" -Author "sdoubleday" -Descripti
 
 New-IseSnippet -Title "ParameterVerboseEchoValues" -Author "sdoubleday" -Description "Verbose list the values of all parameters." -Force -Text '
 #region Echo parameters (https://stackoverflow.com/questions/21559724/getting-all-named-parameters-from-powershell-including-empty-and-set-ones)
-Write-Verbose "Echoing parameters:"
+Write-Verbose "Echoing parameters of $($MyInvocation.MyCommand):"
 $ParameterList = (Get-Command -Name $MyInvocation.InvocationName).Parameters;
 foreach ($key in $ParameterList.keys)
 {
@@ -82,11 +82,11 @@ foreach ($key in $ParameterList.keys)
     If(-not $var){
         If($PSBoundParameters[$key]) {
             "    `$PSBoundParameters[$($key)]: $($PSBoundParameters[$key])" | Write-Verbose
-        }    
+        }
     }
 
 }
-Write-Verbose "Parameters done."
+Write-Verbose "Parameters done of $($MyInvocation.MyCommand)."
 #endregion Echo parameters'
 
 
@@ -116,4 +116,12 @@ BEGIN   {}<# END BEGIN    #>
 PROCESS {}<# END PROCESS  #>
 END     {}<# END END      #>
 '@
+
+
+New-IseSnippet -Title "func With End Comment" -Author "sdoubleday" -Description "Function with end tags." -CaretOffset 18 -Force -Text @'
+function           {[CmdletBinding()][OutputType("")]PARAM()
+} <# END function  #>
+'@
+
+
 
